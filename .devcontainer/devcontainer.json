@@ -1,0 +1,25 @@
+{
+    "name": "C++",
+    "build":{
+        "dockerfile": "./Dockerfile"
+    },
+    "runArgs": [
+        "--platform=linux/amd64"
+    ],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-azuretools.vscode-docker",
+                "MS-CEINTL.vscode-language-pack-ja",
+                "ms-vscode.cpptools-extension-pack",
+                "formulahendry.code-runner",
+                "vadimcn.vscode-lldb",
+                "jbenden.c-cpp-flylint",
+                "xaver.clang-format",
+                "esbenp.prettier-vscode",
+                "shd101wyy.markdown-preview-enhanced",
+                "ms-vscode.cpptools-themes"
+            ]
+        }
+    }
+}
