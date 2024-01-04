@@ -56,4 +56,36 @@ _start:
 
 ## 38:30〜　　ファイルの内容を解析してtokenを生成
 
+- 一文字ずつよみすすめていって、tokenをつくっている
+- 識別しているtokenの種類
+
+```cpp
+enum class TokenType { _return, int_lit, semi };
+```
+
 ## 58:30〜　　tokenからassemblyを生成
+
+- 構文を先読みするために、forで繰り返し処理するところは、興味深いところだった
+
+```cpp
+std::string tokens_to_asm(const std::vector<Token> &tokens) {
+  std::stringstream output;
+  output << "global _start\n_start:\n";
+
+  for (int i = 0; i < tokens.size(); i++) {
+    const Token &token = tokens.at(i);
+    if (token.type == TokenType::_return) {
+      if (i + 1 < tokens.size() &&
+          tokens.at(i + 1).type == TokenType::int_lit) {
+        if (i + 2 < tokens.size() && tokens.at(i + 2).type == TokenType::semi) {
+          output << "    mov rax, 60\n";
+          output << "    mov rdi, " << tokens.at(i + 1).value.value() << "\n";
+          output << "    syscall";
+        }
+      }
+    }
+  }
+
+  return output.str();
+}
+```
