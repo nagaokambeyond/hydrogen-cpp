@@ -51,6 +51,9 @@ _start:
 ビルド
 > cmake --build build/
 
+`Error: could not load cache` エラーが出る場合のようなエラーが出る場合、準備のし忘れの可能性あり。
+`cmake -S . -B build/` してみる
+
 実行
 > ./build/hydro ./src/test.hy
 > ./out
